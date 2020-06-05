@@ -5,8 +5,20 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+//logout redirect login
+use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/login');
+    }
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -25,7 +37,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'sunbnb/home';
 
     /**
      * Create a new controller instance.
