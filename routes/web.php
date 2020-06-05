@@ -14,10 +14,8 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 
 Route::prefix('sunbnb')->group(function (){
-
-Route::get('/', function () {
+    Route::get('/', function () {
     return view('sunbnb/welcome');
-});
-Route::get('/home', 'HomeController@index')->name('home');
-
+    });
+    Route::get('/home', 'HomeController@index')->name('home');
 });
