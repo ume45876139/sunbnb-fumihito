@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>Sunbnb</title>
+    @toastr_css
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -60,7 +62,7 @@
                         @else
                             @if(Auth::user())
                                 <li class="nav-item dropdown">
-                                    <a href="#" class="btn btn-primary">
+                                    <a href="/sunbnb/listing/createroom" class="btn btn-primary">
                                         Become a Host
                                     </a>
                                 </li>
@@ -72,6 +74,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    {{-- add here --}}
+                                    <a class="dropdown-item" href="/sunbnb/user/managelisting">Manage Listings</a>
+
+                                    <a class="dropdown-item" href="/sunbnb/user/reservation">Reservations</a>
+
+                                    <a class="dropdown-item" href="/sunbnb/user/trip">Your Trips</a>
+
+                                    <a class="dropdown-item" href="/sunbnb/user/editprofile">Edit Profile</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -93,5 +104,8 @@
             @yield('content')
         </main>
     </div>
+    @jquery
+    @toastr_js
+    @toastr_render
 </body>
 </html>
