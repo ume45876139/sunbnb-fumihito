@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('sunbnb/home');
+        return view('sunbnb/user/home');
     }
 }
