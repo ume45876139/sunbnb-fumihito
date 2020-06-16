@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Reservation;
 use Auth;
+use App\Image;
 
 class Listing extends Model
 {
@@ -16,6 +17,11 @@ class Listing extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\Image');
     }
 
     public function storeListing($hometype, $room_type, $accomodate, $bedroom, $bathroom)

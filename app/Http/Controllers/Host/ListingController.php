@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Listing;
 
+use App\Image;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 class ListingController extends Controller
 {
     public function createRoom()
@@ -30,7 +34,9 @@ class ListingController extends Controller
 
     public function photo(Listing $listing)
     {
-        return view('sunbnb/listing/photo', compact('listing'));
+        $images = Image::all();
+
+        return view('sunbnb/listing/photo', compact('images','listing'));
     }
 
     public function amenities(Listing $listing)
@@ -125,6 +131,24 @@ class ListingController extends Controller
         toastr()->success('Successfully saved!');
 
         return redirect()->route('location', ['listing' => $listing]);
+    }
+    
+    public function upload(Request $request, Listing $listing)
+    {
+        foreach ($request->file('photo') as $photo) {
+            // Save to Folder
+            $filename = $photo->getClientOriginalName();
+            $path = $photo->storeAs("public/photos", $filename);
+            $publicPath = Storage::url($path);
+
+            Image::create([
+                 //add listing_id
+                'listing_id' => $listing->id,
+                'file_location' => $publicPath,
+            ]);
+        }
+
+        return response()->json(['success']);
     }
 
     public function storeLocation(Request $request, Listing $listing)
