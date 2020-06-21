@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         //order of seeding
         $this->call([
             UsersTableSeeder::class,
-            ListingsTableSeeder::class
+            ListingsTableSeeder::class,
+            ImagesTableSeeder::class
         ]);
     }
 }

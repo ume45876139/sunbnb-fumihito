@@ -17,7 +17,7 @@ class ListingsTableSeeder extends Seeder
             'name'=>'house1',
             'summary'=>'test house',
             'price'=>'100',
-            'hometype'=>'apart',
+            'hometype'=>'Apartment',
             'roomtype'=>'shere',
             'address'=>'鹿児島県霧島市国分中央2丁目-7',
             'accomodate'=>4,
@@ -30,13 +30,14 @@ class ListingsTableSeeder extends Seeder
             'kitchen'=>1,
             'latitude'=>11.11,
             'longitude'=>11.11,
+            'city'=>'kirishima'
             ],
             [
             'user_id'=>'2',
             'name'=>'house2',
             'summary'=>'test house2',
             'price'=>'200',
-            'hometype'=>'hotel',
+            'hometype'=>'apart',
             'roomtype'=>'private',
             'address'=>'鹿児島県霧島市1丁目-23',
             'accomodate'=>1,
@@ -49,6 +50,7 @@ class ListingsTableSeeder extends Seeder
             'kitchen'=>1,
             'latitude'=>11.112,
             'longitude'=>11.112,
+            'city'=>'kirishima'
             ]
         ]);
     }

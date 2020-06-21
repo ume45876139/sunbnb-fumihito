@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="card-body" style="width:100%;">
-        {{-- @if ($errors->any())
+        @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -10,7 +10,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif --}}
+        @endif
         <form action="" method="POST">
             @csrf
                 <div class="form-group">

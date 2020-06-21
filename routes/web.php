@@ -17,7 +17,7 @@ Route::get('search','SearchController@search')->name('search');
 //iamge controller
 Route::get('uploader', 'ImageController@index');
 Route::post('upload', 'ImageController@upload')->name('upload');
-Route::get('reserve','User\ReserveController@reserve');
+
 
 Route::prefix('sunbnb')->group(function (){
     Route::get('/', function () {
@@ -30,7 +30,12 @@ Route::prefix('sunbnb')->group(function (){
         Route::get('/reservation', 'User\ReservationController@reservation')->name('reservation');
         Route::get('/trip', 'User\ReservationController@trip')->name('trip');
         Route::get('/editprofile', 'User\ProfileController@editProfile');
-        Route::get('/user/search','SearchController@userSearch')->name('usersearch');
+
+        //related search, reservation
+        Route::get('/search','SearchController@userSearch')->name('usersearch');
+        Route::get('/{listing}/reserve','User\ReservationController@reserve')->name('reserve');
+        Route::get('{listing}/calculate','User\ReservationController@calculate')->name('calculate');
+        Route::post('{listing}/storereservation', 'User\ReservationController@storeReservation')->name('storereservation');
 
         //update function
         Route::post('/updateprofile', 'User\ProfileController@storeProfile')->name('updateprofile');
