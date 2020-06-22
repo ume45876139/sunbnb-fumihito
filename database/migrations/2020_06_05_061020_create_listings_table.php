@@ -27,12 +27,13 @@ class CreateListingsTable extends Migration
             $table->integer('bedroom')->nullable();
             $table->integer('bathroom')->nullable();
             $table->boolean('tv')->default(0);
+            $table->boolean('kitchen')->default(0);
             $table->boolean('internet')->default(0);
             $table->boolean('heating')->default(0);
             $table->boolean('aircondition')->default(0);
-            $table->boolean('kitchen')->default(0);
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
+            $table->boolean('is_published')->default(0);
             $table->timestamps();
         });
     }
