@@ -11,7 +11,7 @@
             <div class="card-body border-bottom" style="width:100%;">
                 <div class="row">
                     <div class="col-sm-6 col-md-3">
-                        <img src="{{ asset("storage/photos/a6f4267bf4cf5c7900cfaeea8ce28389_t.jpeg") }}"　width="170px" height="120"　alt="Generic placeholder image">
+                        <img src="{{ asset($listing->images->first()->file_location) }}"　width="170px" height="120"　alt="Generic placeholder image">
                     </div>
                     <div class="text-right col-sm-6 col-md-9" style="width:100%;">
                         <h5 class="text-left mt-0">{{ $listing->name }}</h5>
