@@ -12,6 +12,12 @@
 */
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
+//search
+Route::get('search','SearchController@search')->name('search');
+//iamge controller
+Route::get('uploader', 'ImageController@index');
+Route::post('upload', 'ImageController@upload')->name('upload');
+Route::get('reserve','User\ReserveController@reserve');
 
 Route::prefix('sunbnb')->group(function (){
     Route::get('/', function () {
@@ -24,6 +30,7 @@ Route::prefix('sunbnb')->group(function (){
         Route::get('/reservation', 'User\ReservationController@reservation')->name('reservation');
         Route::get('/trip', 'User\ReservationController@trip')->name('trip');
         Route::get('/editprofile', 'User\ProfileController@editProfile');
+        Route::get('/user/search','SearchController@userSearch')->name('usersearch');
 
         //update function
         Route::post('/updateprofile', 'User\ProfileController@storeProfile')->name('updateprofile');
@@ -47,5 +54,7 @@ Route::prefix('sunbnb')->group(function (){
         Route::post('/{listing}/storeamenities', 'Host\ListingController@storeAmenities');
         Route::post('/{listing}/storelocation', 'Host\ListingController@storeLocation');
         Route::post('/{listing}/publish', 'Host\ListingController@publish');
+        Route::post('/{listing}/upload', 'ImageController@upload')->name('upload');
+
     });
 });

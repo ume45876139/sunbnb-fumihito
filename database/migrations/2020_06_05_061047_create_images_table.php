@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->integer('listing_id')->unsigned();
             $table->foreign('listing_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('photo_name')->nullable();
+            $table->string('file_location');
             $table->timestamps();
         });
     }
