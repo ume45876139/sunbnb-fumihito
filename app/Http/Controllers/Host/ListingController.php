@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Host;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Listing;
+use App\Image;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class ListingController extends Controller
 {
@@ -30,7 +34,9 @@ class ListingController extends Controller
 
     public function photo(Listing $listing)
     {
-        return view('sunbnb/listing/photo', compact('listing'));
+        $images = Image::all();
+
+        return view('sunbnb/listing/photo', compact('images','listing'));
     }
 
     public function amenities(Listing $listing)
