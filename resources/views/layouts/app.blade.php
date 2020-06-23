@@ -107,5 +107,40 @@
         @yield('content')
     </main>
     {{-- </div> --}}
+
+<script type="text/javascript">
+    $(function(){
+        if($('#slider').length){
+            console.log('there');
+        }
+    });
+  </script>
+  
+  <script type="text/javascript">
+    jQuery( function() {
+    $( "#slider" ).slider();
+  } );
+  $(function() {
+    // 2スライダーを適用
+  ('#slider').slider(
+        min: 0,
+        max: 100,
+        step: 2,
+        range: true,
+        // 2初期値（配列指定）
+        values: [10, 70],
+        // 3スライダー変更時／初期化時の処理
+        change: function(e, ui) {
+        $('#min').val(ui.values[0]);
+        $('#max').val(ui.values[1]);
+        },
+        create: function(e, ui) {
+        var values = $(this).slider('option', 'values')
+        $('#min').val(values[0]);
+        $('#max').val(values[1]);
+        }
+    );
+  });
+  </script>
 </body>
 </html>

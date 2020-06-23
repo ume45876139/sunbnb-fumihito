@@ -3,12 +3,12 @@
 <div class="container">
     <img src="" width="100%">
     <div class="row">
-        <div class="col-8 row">
+        <div class="col-8">
             <div class="border-bottom">
-                <div class="col-9">
+                <div class="">
 
                 </div>
-                <div class="col-3">
+                <div class="">
 
                 </div>
             </div>
@@ -50,8 +50,9 @@
 
         </div>
     </div>
-     {{-- Add Google Map in the browser --}}
- <div id="map" style="width:400px; height: 400px;"></div>
-
+    {{-- Add Google Map in the browser --}}
+    <div id="map" style="width:400px; height: 400px;"></div>
+    {{-- Retrieves Google Map API information from Google APIs --}}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemaps.api_key') }}"></script>
 </div> 
 @endsection

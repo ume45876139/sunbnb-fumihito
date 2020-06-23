@@ -8,6 +8,7 @@ use App\Listing;
 use App\Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Geocoder\Facades\Geocoder;
 
 
 class ListingController extends Controller
@@ -142,6 +143,10 @@ class ListingController extends Controller
             return back();
         } else {
             $listing->storeAddress($request->location);
+
+            $geocode = Geocoder::getCoordinatesForAddress($request->location);
+            $listing->storeGeocode($geocode['lat'], $geocode['lng']);
+
             toastr()->success('Successfully saved!');
 
             return back();
