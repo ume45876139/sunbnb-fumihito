@@ -15,7 +15,6 @@ Route::get('logout', 'Auth\LoginController@logout');
 //search
 Route::get('search','SearchController@search')->name('search');
 //iamge controller
-Route::get('uploader', 'ImageController@index');
 Route::post('upload', 'ImageController@upload')->name('upload');
 Route::get('reserve','User\ReserveController@reserve');
 

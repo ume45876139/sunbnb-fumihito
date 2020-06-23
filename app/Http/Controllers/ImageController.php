@@ -10,12 +10,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    public function index()
-    {
-        $images = Image::all();
-        return view('images.upload', compact('images'));
-    }
-
     public function upload(Request $request)
     {
         foreach ($request->file('photo') as $photo) {
