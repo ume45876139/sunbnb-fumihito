@@ -17,6 +17,11 @@ class Reservation extends Model
     {
         return $this->belongsTo('App\User');
     }
+    
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
 
     public function saveReservation($listing, $startDate, $endDate, $total)
     {

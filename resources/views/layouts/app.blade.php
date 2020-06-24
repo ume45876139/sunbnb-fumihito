@@ -35,9 +35,9 @@
             </a>
 
             {{-- add navigation bar --}}
-            <form class="form-inline" >
+            <form action="/search" method="GET" class="form-inline" >
                 <input class="form-control mr-sm-2" type="text" name="name" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/search"> Search</a></button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

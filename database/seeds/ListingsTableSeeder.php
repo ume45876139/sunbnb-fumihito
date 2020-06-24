@@ -37,7 +37,7 @@ class ListingsTableSeeder extends Seeder
             'name'=>'house2',
             'summary'=>'test house2',
             'price'=>'200',
-            'hometype'=>'apart',
+            'hometype'=>'Apartment',
             'roomtype'=>'private',
             'address'=>'鹿児島県霧島市1丁目-23',
             'accomodate'=>1,

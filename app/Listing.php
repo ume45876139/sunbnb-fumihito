@@ -24,6 +24,11 @@ class Listing extends Model
         return $this->hasMany('App\Image');
     }
 
+    public function reviews()
+    {
+        return $this->hasManyThrough('App\Review', 'App\Reservation');
+    }
+
     public function storeListing($hometype, $room_type, $accomodate, $bedroom, $bathroom)
     {
         $this->user_id = Auth::id();
