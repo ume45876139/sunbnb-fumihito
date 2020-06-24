@@ -55,11 +55,6 @@ class Listing extends Model
         return $this;
     }
 
-    public function storePicture()
-    {
-        
-    }
-
     public function storeAmenities($tv, $internet, $heating, $aircondition, $kitchen)
     {
         $this->tv = $tv;
@@ -84,6 +79,14 @@ class Listing extends Model
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
+        $this->save();
+
+        return $this;
+    }
+
+    public function storeCity($city)
+    {
+        $this->city->$city;
         $this->save();
 
         return $this;

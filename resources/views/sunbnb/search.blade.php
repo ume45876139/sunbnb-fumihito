@@ -12,7 +12,7 @@
           <div class="border-bottom row">
             {{-- need to use jQuery ui --}}
             <div class="form-group col-6">
-              <input id="min" type="text" size="3" readonly />～
+              <input id="min" type="text" size="3" readonly />
               <input id="max" type="text" size="3" readonly />
               <div id="slider" style="width:300px;"></div>
             </div>
@@ -100,6 +100,27 @@
         </form>
       </div>
     </div>
+  </div>
+  <div class="card-columns mt-5">
+    @foreach ($listings as $listing)
+    <div class="card" style="width: 18rem;">
+      <a href="{{ route('reserve', ['listing' => $listing]) }}">
+        @if($listing->images->count() > 0)
+          <img class="card-img-top" src="{{ asset($listing->images->first()->file_location) }}" alt="Card image cap">
+        @else
+          <img class="card-img-top" src="" alt="Card image cap">
+        @endif
+          <div class="card-body">
+            <h4 class="card-title">{{$listing->name}}</h4>
+          </div>
+      </a>
+      <p class="card-text">
+          {{ $listing->description }}
+      </p>
+      <p>⭐︎⭐︎⭐︎⭐︎</p>
+      <p>n reviwer</p>
+    </div>
+    @endforeach
   </div>
 </div>
 @endsection
