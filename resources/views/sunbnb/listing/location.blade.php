@@ -30,8 +30,7 @@ function initialize() {
     }); 
 }
     google.maps.event.addDomListener(window, 'load', initialize); 
-</script>
-<script>
+    
     var infoWindow = new google.maps.InfoWindow({
         content: "<div id='content'><img src=''></div>"
     });
