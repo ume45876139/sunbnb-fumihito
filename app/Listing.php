@@ -80,6 +80,15 @@ class Listing extends Model
         return $this;
     }
 
+    public function storeGeocode($latitude,$longitude)
+    {
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+        $this->save();
+
+        return $this;
+    }
+
     public function isPublished($isPublished)
     {
         $this->is_published = $isPublished;
