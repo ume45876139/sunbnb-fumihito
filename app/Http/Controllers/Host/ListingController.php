@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Host;
 
+use App\User;
+use App\Image;
+use App\Listing;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Listing;
-use App\Image;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use Spatie\Geocoder\Facades\Geocoder;
+use Illuminate\Support\Facades\Storage;
 
 class ListingController extends Controller
 {
@@ -35,8 +36,9 @@ class ListingController extends Controller
     public function photo(Listing $listing)
     {
         $images = Image::where('listing_id', $listing->id)->get();
+        $profImg = User::find(1)->gravatar();
 
-        return view('sunbnb/listing/photo', compact('images','listing'));
+        return view('sunbnb/listing/photo', compact('images','listing', 'profImg'));
     }
 
     public function amenities(Listing $listing)

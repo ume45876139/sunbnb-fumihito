@@ -18,6 +18,12 @@ Route::get('search','SearchController@search')->name('search');
 Route::get('uploader', 'ImageController@index');
 Route::post('upload', 'ImageController@upload')->name('upload');
 
+//facebook login
+Route::get('user-form', 'UserController@showForm');
+Route::post('user/store', 'UserController@store');
+Route::get('/auth/redirect', 'SocialAuthController@redirect')->name('facebook.redirect');
+Route::get('/callback/{provider}', 'SocialAuthController@callback')->name('facebook.callback'); 
+
 Route::prefix('sunbnb')->group(function (){
     Route::get('/', function () {
         return view('sunbnb/welcome');

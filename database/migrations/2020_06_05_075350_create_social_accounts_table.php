@@ -19,6 +19,7 @@ class CreateSocialAccountsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('provider_user_id');
             $table->string('provider');
+            $table->string('image');
             $table->timestamps();
         });
     }

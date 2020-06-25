@@ -38,6 +38,7 @@
             @endif
         </div>
     </div>
+    <img src="{{$profImg}}" alt="">
 </div>
 @jquery 
 @toastr_js

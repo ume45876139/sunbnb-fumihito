@@ -9,13 +9,8 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $listings = Listing::all();
-        
+        $search = $request->get('search');
+        $listings = Listing::where('name', 'summary', '%'.$search.'%')->get();       
         return view('sunbnb/search', compact('listings'));
-    }
-
-    public function userSearch(Request $request)
-    {
-        return view('sunbnb/user/search');
     }
 }

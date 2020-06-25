@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Geocoder\Facades\Geocoder;
+use App\Review;
+use App\User;
 
 
 class ReservationController extends Controller
@@ -22,17 +24,21 @@ class ReservationController extends Controller
         return view('sunbnb/user/reservation', compact('reservations'));
     }
 
-    public function reserve(Listing $listing)
+    public function reserve(Listing $listing, User $user) //pass class to view
     {
         $geocode = Geocoder::getAddressForCoordinates($listing->latitude, $listing->longitude);
 
         $reviews = $listing->reviews;
-        $avg = round($reviews->sum('star')/$reviews->count()); // array sum
 
-        return view('sunbnb/user/reserve', compact('listing', 'geocode', 'reviews', 'avg'));
+        if($reviews->count() !== 0)
+        {
+            $avg = round($reviews->sum('star')/$reviews->count()); // array sum
+        }
+
+        return view('sunbnb/user/reserve', compact('listing', 'geocode', 'reviews', 'avg', 'user'));
     }
 
-    public function calculate(Request $request ,Listing $listing)
+    public function calculate(Request $request, Listing $listing)
     {
         $request->validate([
             'checkin' => 'required|date',

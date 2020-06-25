@@ -146,7 +146,7 @@
             {{-- Retrieves Google Map API information from Google APIs --}}
             <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemaps.api_key') }}"></script>               
             <div>
-                @if($reviews !== null)
+                @if($reviews->count() !== 0)
                 <div>
                     <h3 class="d-inline">{{$reviews->count()}}Reviews</h3>
                     @for ($i = 1; $i <= 5; $i++)
@@ -161,7 +161,7 @@
                     <div class="row">
                         <div class="col-2 text-center">
                             <img src="/images/images.jpeg" style="width:50px; height:50px; border-radius:50%;">
-                            <h5>{{ Auth::user($review->author_id)->name}}</h5>
+                            <h5>{{ $user::find($review->author_id)->name}}</h5>
                         </div>
                         <div class="col-10">
                             @for ($i = 1; $i <= 5; $i++)

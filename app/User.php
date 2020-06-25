@@ -53,4 +53,15 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Review');
     }
+    
+    public function gravatar()
+    {
+        $hash = md5(strtolower(trim('jeremiah.caballero.jc@gmail.com')));
+        return "http://www.gravatar.com/avatar/$hash";
+    }
+
+    public function account()
+    {
+        return $this->hasOne('App\SocialAccount');
+    }
 }
