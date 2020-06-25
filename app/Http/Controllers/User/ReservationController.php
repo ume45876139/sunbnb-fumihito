@@ -31,8 +31,6 @@ class ReservationController extends Controller
 
     public function reserve(Listing $listing)
     {
-        $geocode = Geocoder::getAddressForCoordinates($listing->latitude, $listing->longitude);
-
         return view('sunbnb/user/reserve', compact('listing', 'geocode'));
     }
 
