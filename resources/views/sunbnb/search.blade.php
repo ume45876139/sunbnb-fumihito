@@ -8,7 +8,7 @@
     </a>
     <div class="collapse my-3" id="collapseExample">
       <div class="card card-body">
-        <form class="">
+        <form action="filter" method="GET">
           <div class="border-bottom row">
             {{-- need to use jQuery ui --}}
             <div class="form-group col-6">
@@ -17,41 +17,37 @@
               <div id="slider" style="width:300px;"></div>
             </div>
             <div class="form-group col-3">
-              <label for="strartDate">test</label>
-              <input type="text" class="form-control" id="startDate">
+              <label for="min-price">Min Price:</label>
+              <input type="text" name="min-price" class="form-control" id="min-price">
             </div>
             <div class="form-group col-3">
-              <label for="endDate">test</label>
-              <input type="text" class="form-control" id="endDate">
+              <label for="max-price">Max Price</label>
+              <input type="text" name="max-price" class="form-control" id="max-price">
             </div>
           </div>
           <div class="border-bottom row">
             <div class="col-6 my-2">
-              <input type="text" class="form-control" id="">
+              <input type="text" name="startdate" class="form-control" placeholder="StartDate" id="">
             </div>
             <div class="col-6 my-2">
-              <input type="text" class="form-control" id="">
+              <input type="text" name="enddate" class="form-control" placeholder="EndDate" id="">
             </div>
           </div>
           <div class="border-bottom row">
             <div class="col-4 my-2">
-              <label for="endDate">test</label>
-              <input type="checkbox" class="form-control" id="">
+              <input type="checkbox" name="roomtype" value="entireroom" id="entire-room"><label for="entire-room"> Entire Room</label>
             </div>
             <div class="col-4 my-2">
-              <label for="endDate">test</label>
-              <input type="checkbox" class="form-control" id="">
+              <input type="checkbox" name="roomtype" value="private" id="private"><label for="private"> Private</label>
             </div>
             <div class="col-4 my-2">
-              <label for="endDate">test</label>
-              <input type="checkbox" class="form-control" id="">
+              <input type="checkbox" name="roomtype" value="share" id="share"><label for="share"> Share</label>
             </div>
           </div>
           <div class="border-bottom row">
             <div class="col-4 my-2">
               <label>Acomodities</label>
-              <select required name="acomodities" class="custom-select">
-                  <option selected>Select...</option>
+              <select required name="accomodate" class="custom-select">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -59,9 +55,8 @@
               </select>
             </div>
             <div class="col-4 my-2">
-              <label></label>
-              <select required name="" class="custom-select">
-                <option selected>Select...</option>
+              <label>Bedrooms</label>
+              <select required name="bedroom" class="custom-select">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -69,9 +64,8 @@
             </select>
             </div>
             <div class="col-4 my-2">
-              <label></label>
-              <select required name="" class="custom-select">
-                <option selected>Select...</option>
+              <label>Bathrooms</label>
+              <select required name="bathroom" class="custom-select">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -81,22 +75,22 @@
           </div>
           <div class="border-bottom row">
             <div class="col-4 my-2">
-              <input type="checkbox" class="form-control" id="">
+              <input type="checkbox" name="tv" id="tv"><label for="tv"> TV</label>
             </div>
             <div class="col-4 my-2">
-              <input type="checkbox" class="form-control" id="">
+              <input type="checkbox" name="kitchen" id="kitchen"><label for="kitchen"> Kitchen</label>
             </div>
             <div class="col-4 my-2">
-              <input type="checkbox" class="form-control" id="">
+              <input type="checkbox" name="internet" id="internet"><label for="internet"> Internet</label>
             </div>
             <div class="col-4 my-2">
-              <input type="checkbox" class="form-control" id="">
+              <input type="checkbox" name="heating" id="heating"><label for="heating"> Heating</label>
             </div>
             <div class="col-4 my-2">
-              <input type="checkbox" class="form-control" id="">
+              <input type="checkbox" name="aircondition" id="air-conditioning"><label for="air-conditioning"> Air Conditioning</label>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">submit</button>
+          <button type="submit" class="mt-3 btn btn-primary">submit</button>
         </form>
       </div>
     </div>

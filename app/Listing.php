@@ -9,6 +9,8 @@ use App\Image;
 
 class Listing extends Model
 {
+    protected $guarded = [];
+    
     public function reservations()
     {
         return $this->hasMany('App\Reservation');

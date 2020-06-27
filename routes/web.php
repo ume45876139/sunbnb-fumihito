@@ -14,6 +14,7 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 //search
 Route::get('search','SearchController@search')->name('search');
+Route::get('filter', 'FilterController@filter');
 //iamge controller
 Route::get('uploader', 'ImageController@index');
 Route::post('upload', 'ImageController@upload')->name('upload');
@@ -37,6 +38,7 @@ Route::prefix('sunbnb')->group(function (){
         Route::get('/editprofile', 'User\ProfileController@editProfile');
         Route::post('/{reservation}/reviewhost', 'User\ReviewController@reviewtohost')->name('reviewtohost');
         Route::post('{trip}/reviewtoguest', 'User\ReviewController@reviewtoguest')->name('reviewtoguest');
+        Route::get('profile', 'User\ProfileController@profile');
 
         //related search, reservation
         Route::get('/search','SearchController@userSearch')->name('usersearch');

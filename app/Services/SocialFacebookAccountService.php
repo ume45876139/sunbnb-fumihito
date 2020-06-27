@@ -5,6 +5,8 @@
  use App\SocialAccount;
  use App\User;
  use Laravel\Socialite\Contracts\User as ProviderUser;
+ use App\Mail\VerifyUser;
+ use Illuminate\Support\Facades\Mail;
 
  class SocialFacebookAccountService
  {
@@ -35,7 +37,8 @@
  					'provider' => 'facebook',
  					'provider_user_id' => $providerUser->getId(),
  					'image' => $providerUser->getAvatar(),
- 				]);
+				 ]);
+				 Mail::to($user)->send(new VerifyUser());
  			}
  		return $user;
  		}

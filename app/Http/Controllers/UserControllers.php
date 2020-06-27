@@ -39,9 +39,15 @@ class UserControllers extends Controller
              'name' => $request->name,
              'email' => $request->email,
              'phone_no' => $request->phone_no,
-             'password' => 'test123',
          ]);
          // Respond
          return redirect('maps');
+     }
+
+     public function showProfile()
+     {
+         $avatar = Auth::user()->gravatar(500);
+
+         return view('profile', compact('avatar'));
      }
 }

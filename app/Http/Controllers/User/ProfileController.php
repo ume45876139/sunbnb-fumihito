@@ -17,7 +17,9 @@ class ProfileController extends Controller
 
     public function profile()
     {
-        return view('sunbnb/user/profile');
+        $avatar = Auth::user()->gravatar(500);
+
+        return view('sunbnb/user/profile', compact('avatar'));
     }
 
     public function storeProfile(Request $request)

@@ -54,10 +54,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Review');
     }
     
-    public function gravatar()
+    public function gravatar($size = 150)
     {
-        $hash = md5(strtolower(trim('jeremiah.caballero.jc@gmail.com')));
-        return "http://www.gravatar.com/avatar/$hash";
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+        return "http://www.gravatar.com/avatar/$hash?s=$size";
     }
 
     public function account()

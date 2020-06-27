@@ -33,10 +33,7 @@ class CreateListingsTable extends Migration
             $table->boolean('aircondition')->default(0);
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
-<<<<<<< Updated upstream
             $table->string('city')->nullable();
-=======
->>>>>>> Stashed changes
             $table->boolean('is_published')->default(0);
             $table->timestamps();
         });

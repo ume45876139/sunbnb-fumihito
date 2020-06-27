@@ -16,11 +16,7 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('listing_id')->unsigned();
-<<<<<<< Updated upstream
             $table->foreign('listing_id')->references('id')->on('listings')->onDelete('cascade');
-=======
-            $table->foreign('listing_id')->references('id')->on('users')->onDelete('cascade');
->>>>>>> Stashed changes
             $table->string('file_location');
             $table->timestamps();
         });
