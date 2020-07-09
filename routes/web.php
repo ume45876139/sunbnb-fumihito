@@ -14,9 +14,16 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 //search
 Route::get('search','SearchController@search')->name('search');
+Route::get('filter', 'FilterController@filter');
 //iamge controller
+Route::get('uploader', 'ImageController@index');
 Route::post('upload', 'ImageController@upload')->name('upload');
 
+//facebook login
+Route::get('user-form', 'UserController@showForm');
+Route::post('user/store', 'UserController@store');
+Route::get('/auth/redirect', 'SocialAuthController@redirect')->name('facebook.redirect');
+Route::get('/callback/{provider}', 'SocialAuthController@callback')->name('facebook.callback'); 
 
 Route::prefix('sunbnb')->group(function (){
     Route::get('/', function () {
@@ -27,10 +34,14 @@ Route::prefix('sunbnb')->group(function (){
         Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/managelisting', 'User\ListingController@manageListing')->name('managelisting');
         Route::get('/reservation', 'User\ReservationController@reservation')->name('reservation');
-        Route::get('/trip', 'User\ReservationController@trip')->name('trip');
+        Route::get('/trip', 'User\TripController@trip')->name('trip');
         Route::get('/editprofile', 'User\ProfileController@editProfile');
+        Route::post('/{reservation}/reviewhost', 'User\ReviewController@reviewtohost')->name('reviewtohost');
+        Route::post('{trip}/reviewtoguest', 'User\ReviewController@reviewtoguest')->name('reviewtoguest');
+        Route::get('profile', 'User\ProfileController@profile');
 
-        //reservation
+        //related search, reservation
+        Route::get('/search','SearchController@userSearch')->name('usersearch');
         Route::get('/{listing}/reserve','User\ReservationController@reserve')->name('reserve');
         Route::get('{listing}/calculate','User\ReservationController@calculate')->name('calculate');
         Route::post('{listing}/storereservation', 'User\ReservationController@storeReservation')->name('storereservation');
@@ -58,6 +69,5 @@ Route::prefix('sunbnb')->group(function (){
         Route::post('/{listing}/storelocation', 'Host\ListingController@storeLocation');
         Route::post('/{listing}/publish', 'Host\ListingController@publish');
         Route::post('/{listing}/upload', 'ImageController@upload')->name('upload');
-
     });
 });

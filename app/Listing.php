@@ -7,9 +7,10 @@ use App\Reservation;
 use Auth;
 use App\Image;
 
-
 class Listing extends Model
 {
+    protected $guarded = [];
+    
     public function reservations()
     {
         return $this->hasMany('App\Reservation');
@@ -24,7 +25,12 @@ class Listing extends Model
     {
         return $this->hasMany('App\Image');
     }
-  
+
+    public function reviews()
+    {
+        return $this->hasManyThrough('App\Review', 'App\Reservation');
+    }
+
     public function storeListing($hometype, $room_type, $accomodate, $bedroom, $bathroom)
     {
         $this->user_id = Auth::id();

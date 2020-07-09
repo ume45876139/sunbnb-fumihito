@@ -4,7 +4,7 @@
     <div class="row mt-4">
         <div class="col-sm-3">
             <p>Edit Profile</p>
-            <a href="sunbnb/user/profile" class="btn btn-primary">View My Profile</a>
+            <a href="/sunbnb/user/profile" class="btn btn-primary">View My Profile</a>
         </div>
         <div class="col-sm-9 card">
             <h3 class="card-header ">

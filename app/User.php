@@ -46,6 +46,22 @@ class User extends Authenticatable
 
     public function listings()
     {
-        return $this->hasMany('App\listings');
+        return $this->hasMany('App\listing');
+    }
+
+    public function review()
+    {
+        return $this->hasMany('App\Review');
+    }
+    
+    public function gravatar($size = 150)
+    {
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+        return "http://www.gravatar.com/avatar/$hash?s=$size";
+    }
+
+    public function account()
+    {
+        return $this->hasOne('App\SocialAccount');
     }
 }

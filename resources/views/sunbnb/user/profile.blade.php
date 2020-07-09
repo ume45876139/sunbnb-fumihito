@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
-            profile
+            <img src="{{ $avatar }}" alt="" width="100%">
         </div>
         <div class="col-9">
             <div>

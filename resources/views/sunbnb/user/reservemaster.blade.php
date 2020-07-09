@@ -1,5 +1,36 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    .evaluation{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+.evaluation input[type='radio']{
+  display: none;
+}
+.evaluation label{
+  position: relative;
+  padding: 10px 10px 0;
+  color: gray;
+  cursor: pointer;
+  font-size: 15px;
+}
+.evaluation label .text{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: gray;
+}
+.evaluation label:hover,
+.evaluation label:hover ~ label,
+.evaluation input[type='radio']:checked ~ label{
+  color: #ffcc00;
+}
+</style>
 <div class="container">
     <img src="{{ asset($listing->images->first()->file_location) }}" width="100%">
     <div class="row">
@@ -115,10 +146,40 @@
             {{-- Retrieves Google Map API information from Google APIs --}}
             <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemaps.api_key') }}"></script>               
             <div>
-                Review
+                @if($reviews->count() !== 0)
+                <div>
+                    <h3 class="d-inline">{{$reviews->count()}}Reviews</h3>
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <= $avg)
+                            <label for="star1">⭐️</label>
+                        @else
+                            <label for="star1">★</label>
+                        @endif
+                    @endfor
+                </div>
+                @foreach ($reviews as $review)
+                    <div class="row">
+                        <div class="col-2 text-center">
+                            <img src="/images/images.jpeg" style="width:50px; height:50px; border-radius:50%;">
+                            <h5>{{ $user::find($review->author_id)->name}}</h5>
+                        </div>
+                        <div class="col-10">
+                            @for ($i = 1; $i <= 5; $i++)
+                            @if ($i <= $review->star)
+                                <label for="star1">⭐️</label>
+                            @else
+                                <label for="star1">★</label>
+                            @endif
+                            @endfor
+                            <p>{{$review->created_at}}</p>
+                            <p>{{$review->description}}</p>
+                        </div>
+                    </div>
+                @endforeach
+                @endif
             </div>
             <div class="border-bottom">
-                Nearbys
+                Nearby
             </div>
         </div>
 

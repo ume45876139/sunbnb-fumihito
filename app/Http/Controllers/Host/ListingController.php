@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Host;
 
+use App\User;
+use App\Image;
+use App\Listing;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Listing;
-use App\Image;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use Spatie\Geocoder\Facades\Geocoder;
-
+use Illuminate\Support\Facades\Storage;
 
 class ListingController extends Controller
 {
@@ -37,7 +37,9 @@ class ListingController extends Controller
     {
         $images = Image::where('listing_id', $listing->id)->get();
 
-        return view('sunbnb/listing/photo', compact('images','listing'));
+        $profImg = User::find(1)->gravatar();
+
+        return view('sunbnb/listing/photo', compact('images','listing', 'profImg'));
     }
 
     public function amenities(Listing $listing)
@@ -133,6 +135,25 @@ class ListingController extends Controller
 
         return redirect()->route('location', ['listing' => $listing]);
     }
+    
+    public function upload(Request $request, Listing $listing)
+    {
+        foreach ($request->file('photo') as $photo) {
+            // Save to Folder
+            $filename = $photo->getClientOriginalName();
+            $path = $photo->storeAs("public/photos", $filename);
+            $publicPath = Storage::url($path);
+
+            Image::create([
+                 //add listing_id
+                'listing_id' => $listing->id,
+                'file_location' => $publicPath,
+            ]);
+        }
+
+        return response()->json(['success']);
+    }
+
 
     public function storeLocation(Request $request, Listing $listing)
     {
