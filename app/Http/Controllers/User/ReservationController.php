@@ -14,7 +14,6 @@ use Spatie\Geocoder\Facades\Geocoder;
 use App\Review;
 use App\User;
 
-
 class ReservationController extends Controller
 {
     public function reservation()

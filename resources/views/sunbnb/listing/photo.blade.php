@@ -45,5 +45,3 @@
 @toastr_render
     <script src="/js/upload.js"></script>
 @endsection
-
-

@@ -19,8 +19,6 @@
         </form>
     </div>
 </div>
-
-
 <script>
 function initialize() {
     var location = { lat:{{ $listing->latitude }}, lng: {{ $listing->longitude }} };

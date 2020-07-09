@@ -36,6 +36,7 @@ class ListingController extends Controller
     public function photo(Listing $listing)
     {
         $images = Image::where('listing_id', $listing->id)->get();
+
         $profImg = User::find(1)->gravatar();
 
         return view('sunbnb/listing/photo', compact('images','listing', 'profImg'));
@@ -152,6 +153,7 @@ class ListingController extends Controller
 
         return response()->json(['success']);
     }
+
 
     public function storeLocation(Request $request, Listing $listing)
     {

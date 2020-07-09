@@ -33,10 +33,6 @@ function upload() {
     let _token = $('input[name=_token]').val();
 
     // adding csrf token in formData
-<<<<<<< Updated upstream
-    console.log(listing_id);
-=======
->>>>>>> Stashed changes
     formData.append('_token', _token);
     formData.append('listing_id', listing_id);
 
