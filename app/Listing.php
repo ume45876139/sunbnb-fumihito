@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Reservation;
 use Auth;
+use App\Image;
 
 class Listing extends Model
 {
+    protected $guarded = [];
+    
     public function reservations()
     {
         return $this->hasMany('App\Reservation');
@@ -16,6 +19,16 @@ class Listing extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
+
+    public function reviews()
+    {
+        return $this->hasManyThrough('App\Review', 'App\Reservation');
     }
 
     public function storeListing($hometype, $room_type, $accomodate, $bedroom, $bathroom)
@@ -48,11 +61,6 @@ class Listing extends Model
         return $this;
     }
 
-    public function storePicture()
-    {
-        
-    }
-
     public function storeAmenities($tv, $internet, $heating, $aircondition, $kitchen)
     {
         $this->tv = $tv;
@@ -68,6 +76,23 @@ class Listing extends Model
     public function storeAddress($address)
     {
         $this->address = $address;
+        $this->save();
+
+        return $this;
+    }
+
+    public function storeGeocode($latitude,$longitude)
+    {
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+        $this->save();
+
+        return $this;
+    }
+
+    public function storeCity($city)
+    {
+        $this->city->$city;
         $this->save();
 
         return $this;

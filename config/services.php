@@ -40,4 +40,13 @@ return [
         ],
     ],
 
+    'googlemaps' => [
+        'api_key' => env('GOOGLE_MAP_API_KEY')
+    ],
+
+    'facebook' => [
+    'client_id' => env('FACEBOOK_APP_ID'), 
+    'client_secret' => env('FACEBOOK_APP_SECRET'), 
+    'redirect' => env('FACEBOOK_REDIRECT'),
+    ]
 ];

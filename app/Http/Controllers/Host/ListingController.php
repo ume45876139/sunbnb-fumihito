@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Host;
 
+use App\User;
+use App\Image;
+use App\Listing;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Listing;
+use Spatie\Geocoder\Facades\Geocoder;
+use Illuminate\Support\Facades\Storage;
 
 class ListingController extends Controller
 {
@@ -30,7 +35,11 @@ class ListingController extends Controller
 
     public function photo(Listing $listing)
     {
-        return view('sunbnb/listing/photo', compact('listing'));
+        $images = Image::where('listing_id', $listing->id)->get();
+
+        $profImg = User::find(1)->gravatar();
+
+        return view('sunbnb/listing/photo', compact('images','listing', 'profImg'));
     }
 
     public function amenities(Listing $listing)
@@ -126,6 +135,25 @@ class ListingController extends Controller
 
         return redirect()->route('location', ['listing' => $listing]);
     }
+    
+    public function upload(Request $request, Listing $listing)
+    {
+        foreach ($request->file('photo') as $photo) {
+            // Save to Folder
+            $filename = $photo->getClientOriginalName();
+            $path = $photo->storeAs("public/photos", $filename);
+            $publicPath = Storage::url($path);
+
+            Image::create([
+                 //add listing_id
+                'listing_id' => $listing->id,
+                'file_location' => $publicPath,
+            ]);
+        }
+
+        return response()->json(['success']);
+    }
+
 
     public function storeLocation(Request $request, Listing $listing)
     {
@@ -136,6 +164,24 @@ class ListingController extends Controller
             return back();
         } else {
             $listing->storeAddress($request->location);
+
+            //save geocode
+            $geocode = Geocoder::getCoordinatesForAddress($request->location);
+            $listing->storeGeocode($geocode['lat'], $geocode['lng']);
+
+            //save city
+            $geocode = Geocoder::getAddressForCoordinates($listing->latitude, $listing->longitude);
+
+            foreach($geocode['address_components'] as $key => $components)
+            {
+                if(in_array("locality",$components->types))
+                {
+                    $city = $components->long_name;
+                    $listing->storeCity($city);
+
+                    break;
+                }
+            }
             toastr()->success('Successfully saved!');
 
             return back();

@@ -22,7 +22,6 @@
                     <label>Room Type</label>
                     <select required name="roomtype" class="custom-select">
                         <option selected>{{$listing->roomtype}}</option>
-                        <option value="Entire">Entire</option>
                         <option value="Private">Private</option>
                         <option value="Shared">Shared</option>
                     </select>
