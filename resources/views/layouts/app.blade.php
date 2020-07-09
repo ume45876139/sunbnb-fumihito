@@ -107,14 +107,18 @@
         @yield('content')
     </main>
     {{-- </div> --}}
-
-<script type="text/javascript">
+    @jquery
+    @toastr_js
+    @toastr_render
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    @yield('script')
+    <script type="text/javascript">
     $(function(){
         if($('#slider').length){
             console.log('there');
         }
     });
-  </script>
+    </script>
   
   <script type="text/javascript">
     jQuery( function() {

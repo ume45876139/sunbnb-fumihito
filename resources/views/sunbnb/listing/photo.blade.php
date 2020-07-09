@@ -25,7 +25,7 @@
         
         <div class="col-6">
             <h3>Image here</h3>
-            @if(count($images) > 0)
+            @if($images !== null)
                 <div class="col-12 card p-3">
                     @foreach ($images as $image)
                         <img src="{{ asset($image->file_location) }}" alt="" width="100%" class="my-3">                    
@@ -39,8 +39,8 @@
         </div>
     </div>
 </div>
-    @jquery 
-    @toastr_js
-    @toastr_render
+@jquery 
+@toastr_js
+@toastr_render
     <script src="/js/upload.js"></script>
 @endsection

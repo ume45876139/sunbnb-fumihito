@@ -35,7 +35,7 @@ class ListingController extends Controller
 
     public function photo(Listing $listing)
     {
-        $images = Image::all();
+        $images = Image::where('listing_id', $listing->id)->get();
 
         return view('sunbnb/listing/photo', compact('images','listing'));
     }
@@ -144,9 +144,23 @@ class ListingController extends Controller
         } else {
             $listing->storeAddress($request->location);
 
+            //save geocode
             $geocode = Geocoder::getCoordinatesForAddress($request->location);
             $listing->storeGeocode($geocode['lat'], $geocode['lng']);
 
+            //save city
+            $geocode = Geocoder::getAddressForCoordinates($listing->latitude, $listing->longitude);
+
+            foreach($geocode['address_components'] as $key => $components)
+            {
+                if(in_array("locality",$components->types))
+                {
+                    $city = $components->long_name;
+                    $listing->storeCity($city);
+
+                    break;
+                }
+            }
             toastr()->success('Successfully saved!');
 
             return back();

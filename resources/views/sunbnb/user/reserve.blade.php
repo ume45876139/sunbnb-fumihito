@@ -1,58 +1,30 @@
-@extends('layouts.app')
-@section('content')
-<div class="container">
-    <img src="" width="100%">
-    <div class="row">
-        <div class="col-8">
-            <div class="border-bottom">
-                <div class="">
-
-                </div>
-                <div class="">
-
-                </div>
-            </div>
-            <div class="justify-content border-bottom">
-                <div>
-                    <i class="fas fa-home"></i>
-                </div>
-    
-                <div>
-                    <i class="fas fa-user-circle"></i>
-                </div>
-                <div>
-                    <i class="fas fa-bath"></i>
-                </div>
-                <div>
-                    <i class="fas fa-bed"></i>
-                </div>
-            </div>
-            <div class="border-bottom">
-                descrption
-            </div>
-            <div class="border-bottom">
-                Amenities
-            </div>
-            <div class="border-bottom">
-                Slide show
-            </div>
-            <div class="border-bottom">
-               Map
-            </div>
-            <div>
-                Review
-            </div>
-            <div class="border-bottom">
-                Nearbys
-            </div>
-        </div>
-        <div class="col-4">
-
-        </div>
+@extends('sunbnb.user.reservemaster')
+@section('reserve')
+<div class="card mt-3">
+    <div class="card-header">
+        <h3>${{ $listing->price }}<span class="float-right">per night</span></h3>
     </div>
-    {{-- Add Google Map in the browser --}}
-    <div id="map" style="width:400px; height: 400px;"></div>
-    {{-- Retrieves Google Map API information from Google APIs --}}
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemaps.api_key') }}"></script>
-</div> 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="{{ route('calculate', ['listing' => $listing]) }}" method="get">               
+        <div class="card-body row">
+            <div class="col-6">
+                <h5>Check in</h5>
+                <input class="form-control" name="checkin" type="date">
+            </div> 
+            <div class="col-6">
+                <h5>Check out</h5>
+                <input class="form-control" name="checkout" type="date">
+            </div>
+            <button type="submit" class="mx-auto mt-3 btn btn-primary btn-lg">Book Now</button>
+        </div>
+    </form>
+</div>
 @endsection

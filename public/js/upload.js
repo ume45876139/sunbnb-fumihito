@@ -33,6 +33,7 @@ function upload() {
     let _token = $('input[name=_token]').val();
 
     // adding csrf token in formData
+    console.log(listing_id);
     formData.append('_token', _token);
     formData.append('listing_id', listing_id);
 
